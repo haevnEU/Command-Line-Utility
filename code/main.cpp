@@ -2,14 +2,21 @@
 #include "colors.hpp"
 #include "utils.hpp"
 
+#include "keyboard.hpp"
 
+#include <string>
 int main(){
-   
-   haevn::terminal::widgets::PasswordInput password_input;
-   std::string in = password_input.getPassword('*');
-
-    haevn::terminal::widgets::ValueSlider sd;
-    int value = sd.getValue();
-    std::cout << value << std::endl;
+    std::string str = "STRING";
+    std::vector<haevn::terminal::widgets::CheckBoxEntry> entries = {haevn::terminal::widgets::CheckBoxEntry{"Entry 1"}, haevn::terminal::widgets::CheckBoxEntry{"Entry 2"}};
+    char c;
+    c = haevn::utils::Getchar::getch();
+    std::cout << (int)c << std::endl;
+    c = haevn::utils::Getchar::getch();
+    std::cout << (int)c << std::endl;
+    c = haevn::utils::Getchar::getch();
+    std::cout << (int)c << std::endl;
+    c = haevn::utils::Getchar::getch();
+    std::cout << (int)c << std::endl;
+    
     return 0;
 }

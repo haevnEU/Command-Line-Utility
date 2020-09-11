@@ -112,6 +112,10 @@ namespace haevn::utils{
     class Getchar{
         public:
 
+        char static getch_timed(unsigned int seconds){
+            
+        }
+
         char static getch(){
             static Getchar instance;
             return instance.getch_(0);
@@ -169,4 +173,6 @@ namespace haevn::utils{
                 return ch;
             }
     };
+
+
 }

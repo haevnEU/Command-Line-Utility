@@ -43,6 +43,8 @@
  */
 #pragma once
 
+#include "keyboard.hpp"
+
 #include <string>
 #include <vector>
 
@@ -117,6 +119,7 @@ namespace haevn::terminal::widgets{
             CheckBoxSettings* settings_t;
     
     public:
+
         CheckBox(std::vector<CheckBoxEntry>& entries_t, std::string& message_t)
              : entries(entries_t), message(message_t){
             settings_t = new CheckBoxSettings();
@@ -132,7 +135,7 @@ namespace haevn::terminal::widgets{
         
         void selectItems(){
             char c = 'D';
-            int row = settings()->preselected_row;
+            int row = 0;
 
             if(settings()->clear_cache){
                 char c2;
@@ -141,14 +144,12 @@ namespace haevn::terminal::widgets{
 
             while(true){
                 std::system("clear");
-                std::cout << terminal::colors::CLEAR << message << " " << utils::dateTime() << std::endl;
-
-                std::cout << "Use " << settings()->up_key << "/" << settings()->down_key <<" to navigate, <ENTER> to check/uncheck and q to return" << std::endl;
-                    
+                std::cout << terminal::colors::CLEAR << utils::dateTime() << std::endl
+                          << "Use " << settings()->up_key << "/" << settings()->down_key << " to navigate, <ENTER> to check/uncheck and q to return" << std::endl
+                          << message << std::endl;    
                 if(settings()->sub_header.size() > 0){
                     std::cout << settings()->sub_header << std::endl;
                 }
-
                 std::cout << std::endl;
                     
                 for(int i = 0; i < entries.size(); i++){
@@ -156,7 +157,6 @@ namespace haevn::terminal::widgets{
                 }
 
                 c = utils::Getchar::getch();
-
                 if(c == settings()->up_key){
                     row--;
                     if(row < 0){
@@ -171,7 +171,7 @@ namespace haevn::terminal::widgets{
                     }
                 }
 
-                if(c == 10){
+                if(c == haevn::utils::keys::ENTER){
                     entries.at(row).selected = !entries.at(row).selected;    
                 }
                 if(c == 'q'){
